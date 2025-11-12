@@ -244,6 +244,70 @@
                 ]
             }
         },
+        "/api/export/products/excel": {
+            "get": {
+                "tags": [
+                    "Export"
+                ],
+                "summary": "Export products to Excel",
+                "description": "Export all products to Excel file and download",
+                "operationId": "exportProductsExcel",
+                "responses": {
+                    "200": {
+                        "description": "Excel file download",
+                        "content": {
+                            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": {}
+                        }
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                }
+            }
+        },
+        "/api/export/products/pdf": {
+            "get": {
+                "tags": [
+                    "Export"
+                ],
+                "summary": "Export products to PDF",
+                "description": "Export all products to PDF file using blade template and save to storage",
+                "operationId": "exportProductsPdf",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "PDF exported successfully"
+                                        },
+                                        "file_path": {
+                                            "type": "string",
+                                            "example": "exports/products_2025-11-12_120530.pdf"
+                                        },
+                                        "download_url": {
+                                            "type": "string",
+                                            "example": "/api/export/download/products_2025-11-12_120530.pdf"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                }
+            }
+        },
         "/api/products": {
             "get": {
                 "tags": [
@@ -672,6 +736,10 @@
         {
             "name": "Authentication",
             "description": "API Endpoints for Authentication"
+        },
+        {
+            "name": "Export",
+            "description": "API Endpoints for exporting data"
         },
         {
             "name": "Products",
