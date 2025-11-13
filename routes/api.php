@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\CustomerController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\ExportController;
 use Illuminate\Support\Facades\Route;
@@ -16,6 +17,8 @@ Route::prefix('export')->group(function () {
     Route::get('products/pdf', [ExportController::class, 'exportProductsPdf']);
     Route::get('products/pdf/download', [ExportController::class, 'exportProductsPdfDownload']);
 });
+
+Route::apiResource('customers', CustomerController::class);
 
 // Protected routes
 Route::middleware('auth:api')->group(function () {
