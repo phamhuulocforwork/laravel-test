@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CustomerController;
+use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\ExportController;
 use Illuminate\Support\Facades\Route;
@@ -31,5 +32,13 @@ Route::middleware('auth:api')->group(function () {
 
     // Product routes
     Route::apiResource('products', ProductController::class);
+
+    // Order routes
+    Route::get('orders', [OrderController::class, 'index']);
+    Route::post('orders', [OrderController::class, 'store']);
+    Route::get('orders/{id}', [OrderController::class, 'show']);
+    Route::post('orders/{id}/items', [OrderController::class, 'addItem']);
+    Route::put('orders/{id}/items/{itemId}', [OrderController::class, 'updateItem']);
+    Route::delete('orders/{id}/items/{itemId}', [OrderController::class, 'deleteItem']);
 });
 
